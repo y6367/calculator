@@ -5,9 +5,9 @@ const clear = document.querySelector(".clear")
 const enter = document.querySelector(".enter")
 
 let first = undefined;
-let op;
+let op = undefined;
 let second = undefined;
-let answer;
+let answer = undefined;
 
 numbers.forEach((button) => {
     button.addEventListener(("click"), ()  => {
@@ -45,18 +45,17 @@ opperators.forEach((button) => {
 enter.addEventListener(("click"), () => {
     if(op === "+") {
         answer = Number(first) + Number(second);
-        display.innerHTML = answer;
+        resetCalc()
     } else if (op === "-") {
         answer = Number(first) - Number(second);
-        display.innerHTML = answer;
+        resetCalc()
     } else if (op === "x") {
         answer = Number(first) * Number(second);
-        display.innerHTML = answer;
+        resetCalc()
     } else if (op === "/") {
         answer = Number(first) / Number(second);
-        display.innerHTML = answer;
+        resetCalc()
     }
-    console.log(answer)
 })
 
 clear.addEventListener(("click"), () => {
@@ -66,3 +65,12 @@ clear.addEventListener(("click"), () => {
     answer = undefined;
     display.innerHTML = ""
 })
+
+function resetCalc() {
+    first = undefined;
+    op = undefined;
+    second = undefined;
+    first = answer
+    display.innerHTML = answer;
+    answer = undefined;
+}
